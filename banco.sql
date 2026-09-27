@@ -1,0 +1,26 @@
+CREATE DATABASE IF NOT EXISTS pwii;
+
+USE pwii;
+
+CREATE TABLE IF NOT EXISTS usuario (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS amigo (
+    id INT NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    sobrenome VARCHAR(100) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO usuario (nome, senha)
+SELECT 'gabi', 'gabi123'
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM usuario
+    WHERE nome = 'gabi'
+);
